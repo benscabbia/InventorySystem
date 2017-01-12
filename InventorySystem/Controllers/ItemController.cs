@@ -9,15 +9,19 @@ namespace InventorySystem.Controllers
 {
     public class ItemController : Controller
     {
+        InventorySystemDb _db = new InventorySystemDb();
+
         // GET: Item
         public ActionResult Index()
         {
+            var model2 = _db.Items.ToList();
+
             var model =
                 from i in items
                 orderby i.Name
                 select i;
 
-            return View(model);
+            return View(model2);
         }
 
         // GET: Item/Details/5
@@ -89,6 +93,14 @@ namespace InventorySystem.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if(_db != null)
+            {
+                _db.Dispose();
             }
         }
 
