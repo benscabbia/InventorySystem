@@ -9,9 +9,15 @@ namespace InventorySystem.Controllers
 {
     public class HomeController : Controller
     {
+        InventorySystemDb _db = new InventorySystemDb();
         public ActionResult Index()
         {
-            return View();
+
+            var model = (from i in _db.Items
+                         orderby i.Name
+                         select i);
+
+            return View(model);
         }
 
         public ActionResult About()
