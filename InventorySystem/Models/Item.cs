@@ -12,6 +12,7 @@ namespace InventorySystem.Models
         public string Description { get; set; }
         public int Price { get; set; }
         public Categories Category { get; set; }
+        public Size Size { get; set; }
         public string EbayUrl { get; set; }
         public int BoxId { get; set; }
     }
@@ -21,4 +22,12 @@ namespace InventorySystem.Models
         Disney,
         TV
     }
+
+    public enum Size
+    {
+        small,
+        medium,
+        large
+    }
+
 }
