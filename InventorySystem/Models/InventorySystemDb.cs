@@ -9,6 +9,10 @@ namespace InventorySystem.Models
 {
     public class InventorySystemDb : DbContext
     {
+        public InventorySystemDb() : base("name=DefaultConnection")
+        {
+            
+        }
         public DbSet<Item> Items { get; set; }
         public DbSet<Box> Boxes { get; set; }
 
