@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace InventorySystem.Controllers
 {
-    public class HomeController : Controller
+    public class ItemController : Controller
     {
         InventorySystemDb _db = new InventorySystemDb();
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace InventorySystem.Controllers
             return View(model);
         }
 
-        // GET: Home/Details/5
+        // GET: Item/Details/5
         public ActionResult Details(int id)
         {
             var model = (from i in _db.Items
@@ -32,7 +32,7 @@ namespace InventorySystem.Controllers
             return View(model);
         }
 
-        // GET: Home/Create
+        // GET: Item/Create
         [HttpGet]        
         public ActionResult Create()
         {
@@ -50,7 +50,7 @@ namespace InventorySystem.Controllers
             return View(item);
         }
 
-        // GET: Home/Edit/5
+        // GET: Item/Edit/5
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -58,7 +58,7 @@ namespace InventorySystem.Controllers
             return View(model);
         }
 
-        // POST: Home/Edit/5
+        // POST: Item/Edit/5
         [HttpPost]
         public ActionResult Edit(Item item)
         {
@@ -79,7 +79,7 @@ namespace InventorySystem.Controllers
         }
 
 
-        // GET: /Home/Delete/5
+        // GET: /Item/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -93,7 +93,7 @@ namespace InventorySystem.Controllers
             }
             return View(item);
         }
-        // POST: Home/Delete/5
+        // POST: Item/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
