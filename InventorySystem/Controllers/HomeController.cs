@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -50,6 +51,7 @@ namespace InventorySystem.Controllers
         }
 
         // GET: Home/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var model = _db.Items.Find(id);
@@ -75,6 +77,31 @@ namespace InventorySystem.Controllers
                 return View();
             }
         }
+
+
+        // GET: /Home/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var item = _db.Items.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+            return View(item);
+        }
+        // POST: Home/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var item = _db.Items.Find(id);
+            _db.Items.Remove(item);            
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
 
         public ActionResult About()
         {
