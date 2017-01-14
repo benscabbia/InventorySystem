@@ -20,6 +20,19 @@ namespace InventorySystem.Controllers
             return View(model);
         }
 
+        // GET: /Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: /Create
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
