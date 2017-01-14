@@ -30,7 +30,8 @@
             @Html.DisplayNameFor(model => model.Size)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BoxId)
+            @*@Html.DisplayNameFor(model => model.BoxId)*@
+            Inside Box
         </th>
         <th></th>
     </tr>
@@ -57,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Size)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.BoxId)
+                @Html.ActionLink(@Html.DisplayFor(modelItem => item.BoxId).ToString(), "Details", "Boxes", new { id = item.BoxId }, null)                
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
