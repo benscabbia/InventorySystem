@@ -7,6 +7,10 @@ namespace InventorySystem.Models
 {
     public class Item
     {
+        public Item()
+        {
+            this.Archieved = false;
+        }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -15,6 +19,7 @@ namespace InventorySystem.Models
         public Size Size { get; set; }
         public string EbayUrl { get; set; }
         public int BoxId { get; set; }
+        public bool Archieved { get; set; }
     }
 
     public enum Categories
