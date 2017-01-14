@@ -80,8 +80,12 @@ namespace InventorySystem.Controllers
 
 
         // GET: /Home/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var item = _db.Items.Find(id);
             if (item == null)
             {
@@ -98,10 +102,7 @@ namespace InventorySystem.Controllers
             _db.Items.Remove(item);            
             _db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-
-
+        }        
 
         public ActionResult About()
         {
