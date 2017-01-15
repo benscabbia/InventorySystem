@@ -12,7 +12,8 @@ namespace InventorySystem.Models
         public int Capacity { get; set; }
         public int Fullness { get; set; }
         public int Value { get; set; }
-        ICollection<Item> Items { get; set; }
         public Categories Category { get; set; }
+
+        public virtual ICollection<Item> Items { get; set; }
     }
 }
