@@ -35,7 +35,8 @@ namespace InventorySystem.Controllers
         // GET: Item/Create
         [HttpGet]        
         public ActionResult Create()
-        {
+        {            
+            ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
             return View();
         }
         [HttpPost]
@@ -47,6 +48,8 @@ namespace InventorySystem.Controllers
                 _db.SaveChanges();
                 return RedirectToAction("Details", new { id = item.Id });
             }
+
+            ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
             return View(item);
         }
 
