@@ -63,10 +63,10 @@
                 @Html.ActionLink(@Html.DisplayFor(modelItem => item.BoxId).ToString(), "Details", "Boxes", new { id = item.BoxId }, null)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Archieve", "Archieve", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", "Item", new { id = item.Id }, null) |
+                @Html.ActionLink("Details", "Details", "Item", new { id = item.Id }, null) |
+                @Html.ActionLink("Archieve", "Archieve", "Item", new { id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", "Item", new { id = item.Id }, null)
             </td>
         </tr>
     }
