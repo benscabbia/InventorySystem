@@ -26,7 +26,7 @@ namespace InventorySystem.Migrations
                          Category = Categories.Disney,
                          EbayUrl = "www.google.com",
                          Size = Size.medium,
-                         BoxId = 1
+                         //BoxId = 1
                      },
                     new Item
                     {                        
@@ -36,7 +36,7 @@ namespace InventorySystem.Migrations
                         Category = Categories.TV,
                         EbayUrl = "www.sims.com",
                         Size = Size.medium,
-                        BoxId = 2
+                        //BoxId = 2
                     }
              );
 

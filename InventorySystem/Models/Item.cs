@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -17,9 +18,10 @@ namespace InventorySystem.Models
         public int Price { get; set; }
         public Categories Category { get; set; }
         public Size Size { get; set; }
-        public string EbayUrl { get; set; }
-        public int BoxId { get; set; }
+        public string EbayUrl { get; set; }     
         public bool Archieved { get; set; }
+        [Required]
+        public Box Box { get; set; }
     }
 
     public enum Categories

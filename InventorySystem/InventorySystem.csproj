@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201701120648541_InitialCreate.Designer.cs">
       <DependentUpon>201701120648541_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701162111003_AddedBoxToItemNavProp.cs" />
+    <Compile Include="Migrations\201701162111003_AddedBoxToItemNavProp.Designer.cs">
+      <DependentUpon>201701162111003_AddedBoxToItemNavProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Box.cs" />
@@ -269,6 +273,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701120648541_InitialCreate.resx">
       <DependentUpon>201701120648541_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701162111003_AddedBoxToItemNavProp.resx">
+      <DependentUpon>201701162111003_AddedBoxToItemNavProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
