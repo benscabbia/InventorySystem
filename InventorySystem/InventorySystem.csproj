@@ -174,13 +174,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701120648541_InitialCreate.cs" />
-    <Compile Include="Migrations\201701120648541_InitialCreate.Designer.cs">
-      <DependentUpon>201701120648541_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701162111003_AddedBoxToItemNavProp.cs" />
-    <Compile Include="Migrations\201701162111003_AddedBoxToItemNavProp.Designer.cs">
-      <DependentUpon>201701162111003_AddedBoxToItemNavProp.cs</DependentUpon>
+    <Compile Include="Migrations\201701162132525_initial.cs" />
+    <Compile Include="Migrations\201701162132525_initial.Designer.cs">
+      <DependentUpon>201701162132525_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -221,7 +217,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -271,11 +269,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701120648541_InitialCreate.resx">
-      <DependentUpon>201701120648541_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701162111003_AddedBoxToItemNavProp.resx">
-      <DependentUpon>201701162111003_AddedBoxToItemNavProp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701162132525_initial.resx">
+      <DependentUpon>201701162132525_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

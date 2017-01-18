@@ -3,7 +3,7 @@ namespace InventorySystem.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -29,15 +29,21 @@ namespace InventorySystem.Migrations
                         Description = c.String(),
                         Price = c.Int(nullable: false),
                         Category = c.Int(nullable: false),
+                        Size = c.Int(nullable: false),
                         EbayUrl = c.String(),
-                        BoxId = c.Int(nullable: false),
+                        Archieved = c.Boolean(nullable: false),
+                        Box_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Boxes", t => t.Box_Id)
+                .Index(t => t.Box_Id);
             
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.Items", "Box_Id", "dbo.Boxes");
+            DropIndex("dbo.Items", new[] { "Box_Id" });
             DropTable("dbo.Items");
             DropTable("dbo.Boxes");
         }

@@ -32,9 +32,12 @@ namespace InventorySystem.Controllers
             {
                 return HttpNotFound();
             }
-            var items = (from i in _db.Items
-                         //where i.BoxId == id
-                         select i).ToList();
+
+
+            //var items = (from i in _db.Items
+            //             //where i.BoxId == id
+            //             select i).ToList();
+            var items = box.Items.ToList();
 
             return View(new BoxItemsViewModel(box, items));
         }

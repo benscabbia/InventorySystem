@@ -44,7 +44,7 @@ namespace InventorySystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Items.Add(item);
+                _db.Items.Add(item);                
                 _db.SaveChanges();
                 return RedirectToAction("Details", new { id = item.Id });
             }
@@ -102,7 +102,9 @@ namespace InventorySystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var item = _db.Items.Find(id);
-            _db.Items.Remove(item);            
+            _db.Items.Remove(item);       
+            // If issues, use below
+            // _db.Entry(item).State = EntityState.Delete;     
             _db.SaveChanges();
             return RedirectToAction("Index");
         }        

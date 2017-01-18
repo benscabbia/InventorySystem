@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace InventorySystem.Models
 {
@@ -20,6 +16,7 @@ namespace InventorySystem.Models
         public Size Size { get; set; }
         public string EbayUrl { get; set; }     
         public bool Archieved { get; set; }
+        public int BoxId { get; set; }
         [Required]
         public Box Box { get; set; }
     }
