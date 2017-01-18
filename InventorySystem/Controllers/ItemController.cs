@@ -29,6 +29,8 @@ namespace InventorySystem.Controllers
                         where i.Id == id
                         select i).Single();
 
+            //var box = model.Box; 
+
             return View(model);
         }
 

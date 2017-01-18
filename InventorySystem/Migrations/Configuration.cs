@@ -44,34 +44,34 @@ namespace InventorySystem.Migrations
                     new Box
                     {
                         Label = "Disney Soft Toys",
-                        Fullness = 0,
+                        //Fullness = 0,
                         Category = Categories.Disney,
                         Capacity = 65,
-                        Value = 0
+                        //Value = 0
                     },
                     new Box
                     {
                         Label = "Disney Hard Toys",
-                        Fullness = 0,
+                        //Fullness = 0,
                         Category = Categories.Disney,
                         Capacity = 65,
-                        Value = 0
+                        //Value = 0
                     },
                     new Box
                     {
                         Label = "Film and TV Soft Toys",
-                        Fullness = 0,
+                        //Fullness = 0,
                         Category = Categories.TV,
                         Capacity = 65,
-                        Value = 0
+                        //Value = 0
                     },
                     new Box
                     {
                         Label = "Film and TV Hard Toys",
-                        Fullness = 0,
+                        //Fullness = 0,
                         Category = Categories.TV,
                         Capacity = 65,
-                        Value = 0
+                        //Value = 0
                     }
              );
         }
