@@ -42,6 +42,7 @@ namespace InventorySystem.Controllers
         [HttpPost]
         public ActionResult Create(Item item)
         {
+            //item.Box = _db.Boxes.Find(item.BoxId); // TODO
             if (ModelState.IsValid)
             {
                 _db.Items.Add(item);                

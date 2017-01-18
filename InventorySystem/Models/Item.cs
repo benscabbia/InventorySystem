@@ -16,9 +16,9 @@ namespace InventorySystem.Models
         public Size Size { get; set; }
         public string EbayUrl { get; set; }     
         public bool Archieved { get; set; }
-        public int BoxId { get; set; }
         [Required]
-        public Box Box { get; set; }
+        public int BoxId { get; set; }
+        public virtual Box Box { get; set; }
     }
 
     public enum Categories
