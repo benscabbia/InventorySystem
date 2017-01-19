@@ -19,7 +19,7 @@ namespace InventorySystem.Models
         public virtual ICollection<Item> Items { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int Value
+        public decimal Value
         {
             get
             {
