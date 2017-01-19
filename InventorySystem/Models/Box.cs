@@ -18,9 +18,23 @@ namespace InventorySystem.Models
         public Categories Category { get; set; }
         public virtual ICollection<Item> Items { get; set; }
 
-        [NotMapped]
-        public int Value { get; set; }
-        [NotMapped]
-        public int Fullness { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int Value
+        {
+            get
+            {
+                return Items.Sum(i => i.Price);
+            }
+            private set { }
+        }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int Fullness
+        {
+            get
+            {
+                return (100 / this.Capacity) * Items.Count;
+            }
+            private set { }
+        }
     }
 }
