@@ -9,6 +9,9 @@ namespace InventorySystem.Models
             this.Archieved = false;
         }
         public int Id { get; set; }
+        [Required]
+        [Display(Name = "Ebay Number")]
+        public string ItemNumber { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }

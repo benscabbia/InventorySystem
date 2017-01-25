@@ -41,7 +41,7 @@ namespace InventorySystem.Models
         /// </summary>
         /// 
         /// <returns>ApiContext</returns>
-        static ApiContext GetApiContext()
+        private static ApiContext GetApiContext()
         {
             //apiContext is a singleton,
             //to avoid duplicate config file reading
@@ -63,8 +63,16 @@ namespace InventorySystem.Models
                 apiCredential.ApiAccount.Certificate = ConfigurationManager.AppSettings["UserAccount.CertID"];
 
                 apiContext.ApiCredential = apiCredential;
-                //set eBay Site target to US
                 apiContext.Site = SiteCodeType.UK;
+
+                ////the WSDL Version used for this SDK build
+                //apiContext.Version = "981";
+
+                ////very important, let's setup the logging
+                //ApiLogManager logManager = new ApiLogManager();
+                //logManager.ApiLoggerList.Add(new eBay.Service.Util.FileLogger("EbayContextLog.log", true, true, true));
+                //logManager.EnableLogging = true;
+                //apiContext.ApiLogManager = logManager;
 
                 //oContext.ApiCredential.ApiAccount.Developer = ""; // use your dev ID
                 //oContext.ApiCredential.ApiAccount.Application = ""; // use your app ID
@@ -74,10 +82,8 @@ namespace InventorySystem.Models
 
         }
 
-        static void GetEbayItem(string itemNumber)
+        public static GetItemCall GetEbayItem(string itemId)
         {
-            Console.WriteLine("Hello");
-            string itemId = "222366593223";
 
             ApiContext apiContext = GetApiContext();
             //[Step 2] Create Call object and execute the Call
@@ -93,19 +99,24 @@ namespace InventorySystem.Models
 
             //' enable the compression feature
             oGetItemCall.EnableCompression = true;
-            oGetItemCall.DetailLevelList.Add(eBay.Service.Core.Soap.DetailLevelCodeType.ReturnAll);
+            oGetItemCall.DetailLevelList.Add(eBay.Service.Core.Soap.DetailLevelCodeType.ItemReturnDescription);
             oGetItemCall.ItemID = itemId;
             try
             {
                 oGetItemCall.GetItem(oGetItemCall.ItemID);
+                //oGetItemCall.GetItem("222366593223");                
+            }
+            catch (ArgumentException E)
+            {
+                Console.Write(E.ToString());
+                throw new ArgumentException("The Ebay Item is invalid. Check the number again", E.ToString());
             }
             catch (Exception E)
             {
-                Console.Write(E.ToString());
-                oGetItemCall.GetItem(itemId);
+                Console.Write(E.ToString());                
             }
             GC.Collect();
-            var item = oGetItemCall;
+            return oGetItemCall;
         }
     }
 }

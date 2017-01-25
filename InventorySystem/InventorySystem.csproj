@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201701162132525_initial.Designer.cs">
       <DependentUpon>201701162132525_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701250639117_AddedItemNumber.cs" />
+    <Compile Include="Migrations\201701250639117_AddedItemNumber.Designer.cs">
+      <DependentUpon>201701250639117_AddedItemNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Box.cs" />
@@ -214,7 +218,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -275,6 +281,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201701162132525_initial.resx">
       <DependentUpon>201701162132525_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701250639117_AddedItemNumber.resx">
+      <DependentUpon>201701250639117_AddedItemNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

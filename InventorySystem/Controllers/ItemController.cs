@@ -36,13 +36,42 @@ namespace InventorySystem.Controllers
         [HttpGet]        
         public ActionResult Create()
         {            
-            ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
+            ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");            
             return View();
         }
         [HttpPost]
         public ActionResult Create(Item item)
         {
-            //item.Box = _db.Boxes.Find(item.BoxId); // TODO
+            
+            try
+            {
+                var ebayItem = EbayAPI.GetEbayItem(item.ItemNumber);
+                
+                item.ItemNumber = ebayItem.Item.ItemID;
+                item.Name = ebayItem.Item.Title;
+                item.EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL;
+                item.Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice);
+                item.Description = ebayItem.Item.Description;
+                
+                
+                //condition describe ebayItem.Item.ConditionDescription
+
+                //startime, endtime to be, ebayItem.Item.ListingDetail
+                // location mums vs camb
+                // number of views
+                //item.TimeLeft; Time left before the listing ends. The duration is represented in the ISO 8601 duration format (PnYnMnDTnHnMnS). See Data Types in the Trading API Guide for information about this format. For ended listings, the time left is PT0S (zero seconds).
+                
+                //picture details url i.e. item.PictureDetails.GalleryURL
+                // or PictureDetails.PictureURL.InnerList [array of image URL's]
+
+                //ListingType i.e. FixedPriceItem -> maybe dynamic and get relevant values?
+            }
+            catch (ArgumentException)
+            {
+                ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
+                return View(item);
+            }
+
             if (ModelState.IsValid)
             {
                 _db.Items.Add(item);                

@@ -19,6 +19,7 @@ namespace InventorySystem.Migrations
               i => i.Name,
                    new Item
                    {
+                       ItemNumber = "00000",
                        Name = "Yoda",
                        Description = "",
                        Price = 8,
@@ -29,6 +30,7 @@ namespace InventorySystem.Migrations
                      },
                   new Item
                   {
+                      ItemNumber = "00001",
                       Name = "Bart Simpson",
                       Description = "Small canvas",
                       Price = 3,
