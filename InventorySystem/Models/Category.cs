@@ -5,7 +5,7 @@ using System.Web;
 
 namespace InventorySystem.Models
 {
-    public enum Categories
+    public enum Category
     {
         Disney,
         TV

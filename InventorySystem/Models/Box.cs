@@ -15,7 +15,7 @@ namespace InventorySystem.Models
         public int Id { get; set; }
         public string Label { get; set; }
         public int Capacity { get; set; }
-        public Categories Category { get; set; }
+        public Category Category { get; set; }
         public virtual ICollection<Item> Items { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]

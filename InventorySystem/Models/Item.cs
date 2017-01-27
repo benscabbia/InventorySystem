@@ -15,7 +15,7 @@ namespace InventorySystem.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public Categories Category { get; set; }
+        public Category Category { get; set; }
         public Size Size { get; set; }
         public string EbayUrl { get; set; }
         public bool Archieved { get; set; }

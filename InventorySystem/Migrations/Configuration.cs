@@ -23,7 +23,7 @@ namespace InventorySystem.Migrations
                        Name = "Yoda",
                        Description = "",
                        Price = 8,
-                       Category = Categories.Disney,
+                       Category = Category.Disney,
                        EbayUrl = "www.google.com",
                        Size = Size.medium,
                        BoxId = 1
@@ -34,7 +34,7 @@ namespace InventorySystem.Migrations
                       Name = "Bart Simpson",
                       Description = "Small canvas",
                       Price = 3,
-                      Category = Categories.TV,
+                      Category = Category.TV,
                       EbayUrl = "www.sims.com",
                       Size = Size.medium,
                       BoxId = 2
@@ -46,25 +46,25 @@ namespace InventorySystem.Migrations
                     new Box
                     {
                         Label = "Disney Soft Toys",
-                        Category = Categories.Disney,
+                        Category = Category.Disney,
                         Capacity = 65,
                     },
                     new Box
                     {
                         Label = "Disney Hard Toys",
-                        Category = Categories.Disney,
+                        Category = Category.Disney,
                         Capacity = 65,
                     },
                     new Box
                     {
                         Label = "Film and TV Soft Toys",
-                        Category = Categories.TV,
+                        Category = Category.TV,
                         Capacity = 65,
                     },
                     new Box
                     {
                         Label = "Film and TV Hard Toys",
-                        Category = Categories.TV,
+                        Category = Category.TV,
                         Capacity = 65,
                     }
              );
