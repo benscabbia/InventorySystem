@@ -52,23 +52,38 @@ namespace InventorySystem.Controllers
                     item.Name = ebayItem.Item.Title;
                     item.EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL;
                     item.Description = ebayItem.Item.Description;                
-                    item.Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice.Value);
+                    item.Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice.Value); //item.startprice.value
                 }else
                 {
                     throw new NullReferenceException("EbayItem has an error.ItemNumber=["+ ebayItem.Item.ItemID  + "], if empty, item could not be found");
                 }
-                
+
                 //condition describe ebayItem.Item.ConditionDescription
 
                 //startime, endtime to be, ebayItem.Item.ListingDetail
                 // location mums vs camb
                 // number of views
                 //item.TimeLeft; Time left before the listing ends. The duration is represented in the ISO 8601 duration format (PnYnMnDTnHnMnS). See Data Types in the Trading API Guide for information about this format. For ended listings, the time left is PT0S (zero seconds).
-                
+
                 //picture details url i.e. item.PictureDetails.GalleryURL
                 // or PictureDetails.PictureURL.InnerList [array of image URL's]
 
                 //ListingType i.e. FixedPriceItem -> maybe dynamic and get relevant values?
+
+                //item.hitcount;
+
+                //item.listingDetails. end time? , startTime
+
+                //item.listingtype
+
+                //item.relisted / item.relistlink / item.listeparentID
+
+                //item.sellingstatus.listing status, item.quantity sold
+
+                //shipping cost item.shippingdetails.shippingserviceoptions
+                //if shippingserveroptions.count > 0, shippingserveroptions.list[0].shippingservicecost.value
+
+                //watch count
             }
             catch (ArgumentException E)
             {
