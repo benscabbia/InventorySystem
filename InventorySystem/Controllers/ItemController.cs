@@ -46,13 +46,17 @@ namespace InventorySystem.Controllers
             try
             {
                 var ebayItem = EbayAPI.GetEbayItem(item.ItemNumber);
-                
-                item.ItemNumber = ebayItem.Item.ItemID;
-                item.Name = ebayItem.Item.Title;
-                item.EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL;
-                item.Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice);
-                item.Description = ebayItem.Item.Description;
-                
+                if (!ebayItem.HasError)
+                {
+                    item.ItemNumber = ebayItem.Item.ItemID;
+                    item.Name = ebayItem.Item.Title;
+                    item.EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL;
+                    item.Description = ebayItem.Item.Description;                
+                    item.Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice.Value);
+                }else
+                {
+                    throw new NullReferenceException("EbayItem has an error.ItemNumber=["+ ebayItem.Item.ItemID  + "], if empty, item could not be found");
+                }
                 
                 //condition describe ebayItem.Item.ConditionDescription
 
@@ -66,8 +70,21 @@ namespace InventorySystem.Controllers
 
                 //ListingType i.e. FixedPriceItem -> maybe dynamic and get relevant values?
             }
-            catch (ArgumentException)
+            catch (ArgumentException E)
             {
+                ModelState.AddModelError("", E.ToString());
+                ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
+                return View(item);
+            }
+            catch (NullReferenceException E)
+            {                
+                ModelState.AddModelError("", E.ToString());
+                ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
+                return View(item);
+            }
+            catch (Exception E)
+            {
+                ModelState.AddModelError("", E.ToString());
                 ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
                 return View(item);
             }
