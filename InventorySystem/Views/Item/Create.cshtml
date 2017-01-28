@@ -1,4 +1,4 @@
-﻿@model InventorySystem.Models.Item
+﻿@model InventorySystem.Models.ViewModels.ItemCreateViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -23,10 +23,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Category, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.CategoryId, new SelectList(Model.Categories, "Id", "Name"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -38,18 +38,10 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @html.labelfor(model => model.ebayurl, htmlattributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @html.editorfor(model => model.ebayurl, new { htmlattributes = new { @class = "form-control" } })
-                @html.validationmessagefor(model => model.ebayurl, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.BoxId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">               
-                @Html.DropDownListFor(model => model.BoxId, ViewBag.BoxesId as SelectList, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.BoxId, new SelectList(Model.Boxes, "Id", "Label"), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BoxId, "", new { @class = "text-danger" })
             </div>
         </div>

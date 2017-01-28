@@ -10,6 +10,7 @@ namespace InventorySystem.Models
         }
         public DbSet<Item> Items { get; set; }
         public DbSet<Box> Boxes { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

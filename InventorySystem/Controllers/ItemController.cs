@@ -1,10 +1,9 @@
 ﻿using InventorySystem.Models;
+using InventorySystem.Models.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace InventorySystem.Controllers
@@ -26,36 +25,55 @@ namespace InventorySystem.Controllers
         public ActionResult Details(int id)
         {
             var model = (from i in _db.Items
-                        where i.Id == id
-                        select i).Single();
+                         where i.Id == id
+                         select i).Single();
 
             return View(model);
         }
 
         // GET: Item/Create
-        [HttpGet]        
+        [HttpGet]
         public ActionResult Create()
-        {            
-            ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");            
-            return View();
+        {
+            ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
+
+            var viewModel = new ItemCreateViewModel
+            {
+                Categories = _db.Categories.ToList(),
+                Boxes = _db.Boxes.ToList()
+
+            };
+
+            return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Create(Item item)
+        public ActionResult Create(ItemCreateViewModel viewModel)
         {
-            
+            Item item;
             try
             {
-                var ebayItem = EbayAPI.GetEbayItem(item.ItemNumber);
+                var ebayItem = EbayAPI.GetEbayItem(viewModel.ItemNumber);
+
+
                 if (!ebayItem.HasError)
                 {
-                    item.ItemNumber = ebayItem.Item.ItemID;
-                    item.Name = ebayItem.Item.Title;
-                    item.EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL;
-                    item.Description = ebayItem.Item.Description;                
-                    item.Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice.Value); //item.startprice.value
-                }else
+
+                    item = new Item
+                    {
+                        ItemNumber = ebayItem.Item.ItemID,
+                        Name = ebayItem.Item.Title,
+                        BoxId = viewModel.BoxId,
+                        Size = viewModel.Size,
+                        CategoryId = viewModel.CategoryId,
+                        EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL,
+                        Description = ebayItem.Item.Description,
+                        Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice.Value) //item.startprice.value
+
+                    };
+                }
+                else
                 {
-                    throw new NullReferenceException("EbayItem has an error.ItemNumber=["+ ebayItem.Item.ItemID  + "], if empty, item could not be found");
+                    throw new NullReferenceException("EbayItem has an error.ItemNumber=[" + ebayItem.Item.ItemID + "], if empty, item could not be found");
                 }
 
                 //condition describe ebayItem.Item.ConditionDescription
@@ -88,31 +106,51 @@ namespace InventorySystem.Controllers
             catch (ArgumentException E)
             {
                 ModelState.AddModelError("", E.ToString());
-                ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
-                return View(item);
+                var viewModelItem = new ItemCreateViewModel
+                {
+                    Categories = _db.Categories.ToList(),
+                    Boxes = _db.Boxes.ToList()
+
+                };
+                return View(viewModelItem);
             }
             catch (NullReferenceException E)
-            {                
+            {
                 ModelState.AddModelError("", E.ToString());
-                ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
-                return View(item);
+                var viewModelItem = new ItemCreateViewModel
+                {
+                    Categories = _db.Categories.ToList(),
+                    Boxes = _db.Boxes.ToList()
+
+                };
+                return View(viewModelItem);
             }
             catch (Exception E)
             {
                 ModelState.AddModelError("", E.ToString());
-                ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
-                return View(item);
+                var viewModelItem = new ItemCreateViewModel
+                {
+                    Categories = _db.Categories.ToList(),
+                    Boxes = _db.Boxes.ToList()
+
+                };
+                return View(viewModelItem);
             }
 
             if (ModelState.IsValid)
             {
-                _db.Items.Add(item);                
+                _db.Items.Add(item);
                 _db.SaveChanges();
                 return RedirectToAction("Details", new { id = item.Id });
             }
 
-            ViewBag.BoxesId = new SelectList(_db.Boxes, "Id", "Label");
-            return View(item);
+            var viewItemModel = new ItemCreateViewModel
+            {
+                Categories = _db.Categories.ToList(),
+                Boxes = _db.Boxes.ToList()
+
+            };
+            return View(viewItemModel);
         }
 
         // GET: Item/Edit/5
@@ -132,7 +170,7 @@ namespace InventorySystem.Controllers
                 if (ModelState.IsValid)
                 {
                     _db.Entry(item).State = EntityState.Modified;
-                    _db.SaveChanges(); 
+                    _db.SaveChanges();
                 }
 
                 return RedirectToAction("Details", new { id = item.Id });
@@ -164,12 +202,12 @@ namespace InventorySystem.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             var item = _db.Items.Find(id);
-            _db.Items.Remove(item);       
+            _db.Items.Remove(item);
             // If issues, use below
             // _db.Entry(item).State = EntityState.Delete;     
             _db.SaveChanges();
             return RedirectToAction("Index");
-        }        
+        }
 
         public ActionResult About()
         {

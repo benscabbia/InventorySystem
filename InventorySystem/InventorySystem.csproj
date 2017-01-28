@@ -185,6 +185,18 @@
     <Compile Include="Migrations\201701250639117_AddedItemNumber.Designer.cs">
       <DependentUpon>201701250639117_AddedItemNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701281122513_CreateCategoryTable.cs" />
+    <Compile Include="Migrations\201701281122513_CreateCategoryTable.Designer.cs">
+      <DependentUpon>201701281122513_CreateCategoryTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701281124191_PopulateCategoriesTable.cs" />
+    <Compile Include="Migrations\201701281124191_PopulateCategoriesTable.Designer.cs">
+      <DependentUpon>201701281124191_PopulateCategoriesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701281214344_AddedCategoryIdToItemTable.cs" />
+    <Compile Include="Migrations\201701281214344_AddedCategoryIdToItemTable.Designer.cs">
+      <DependentUpon>201701281214344_AddedCategoryIdToItemTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Box.cs" />
@@ -287,6 +299,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701250639117_AddedItemNumber.resx">
       <DependentUpon>201701250639117_AddedItemNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701281122513_CreateCategoryTable.resx">
+      <DependentUpon>201701281122513_CreateCategoryTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701281124191_PopulateCategoriesTable.resx">
+      <DependentUpon>201701281124191_PopulateCategoriesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701281214344_AddedCategoryIdToItemTable.resx">
+      <DependentUpon>201701281214344_AddedCategoryIdToItemTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
