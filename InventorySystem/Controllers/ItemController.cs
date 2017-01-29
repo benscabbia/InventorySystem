@@ -158,17 +158,33 @@ namespace InventorySystem.Controllers
         public ActionResult Edit(int id)
         {
             var model = _db.Items.Find(id);
-            return View(model);
+
+            var item = new ItemEditViewModel
+            {
+                Id = model.Id,
+                Name = model.Name,
+                BoxId = model.BoxId,
+                Boxes = _db.Boxes.ToList(),
+                CategoryId = model.CategoryId,
+                Categories = _db.Categories.ToList(),
+                ItemNumber = model.ItemNumber,
+                Size = model.Size
+            };
+            return View(item);
         }
 
         // POST: Item/Edit/5
         [HttpPost]
-        public ActionResult Edit(Item item)
+        public ActionResult Edit(ItemEditViewModel model)
         {
             try
             {
+                var item = _db.Items.Find(model.Id);
                 if (ModelState.IsValid)
                 {
+                    item.BoxId = model.BoxId;
+                    item.CategoryId = model.CategoryId;
+                    item.Size = model.Size;
                     _db.Entry(item).State = EntityState.Modified;
                     _db.SaveChanges();
                 }
