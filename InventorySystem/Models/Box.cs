@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
 
 namespace InventorySystem.Models
 {
@@ -15,6 +14,8 @@ namespace InventorySystem.Models
         public int Id { get; set; }
         public string Label { get; set; }
         public int Capacity { get; set; }
+        [Required]
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
         public virtual ICollection<Item> Items { get; set; }
 
