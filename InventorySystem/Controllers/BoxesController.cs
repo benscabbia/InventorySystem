@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using InventorySystem.Models;
+using InventorySystem.Models.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using InventorySystem.Models;
 
 namespace InventorySystem.Controllers
 {
@@ -33,14 +30,21 @@ namespace InventorySystem.Controllers
                 return HttpNotFound();
             }
 
-            var items = box.Items.ToList();            
+            var items = box.Items.ToList();
             return View(new BoxItemsViewModel(box, items));
         }
 
         // GET: Boxes/Create
         public ActionResult Create()
         {
-            return View();
+
+            var viewModel = new BoxCreateViewModel
+            {
+                Categories = _db.Categories.ToList()
+            };
+
+
+            return View(viewModel);
         }
 
         // POST: Boxes/Create
@@ -48,16 +52,22 @@ namespace InventorySystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Label,Capacity,Fullness,Value,Category")] Box box)
+        public ActionResult Create(BoxCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var box = new Box
+                {
+                    Label = viewModel.Label,
+                    Capacity = viewModel.Capacity,
+                    CategoryId = viewModel.CategoryId
+                };
                 _db.Boxes.Add(box);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(box);
+            return View(viewModel);
         }
 
         // GET: Boxes/Edit/5
@@ -68,11 +78,21 @@ namespace InventorySystem.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Box box = _db.Boxes.Find(id);
+
             if (box == null)
             {
                 return HttpNotFound();
             }
-            return View(box);
+
+            var viewModel = new BoxEditViewModel
+            {
+                Id = box.Id,
+                Label = box.Label,
+                Capacity = box.Capacity,
+                CategoryId = box.CategoryId,
+                Categories = _db.Categories.ToList()
+            };
+            return View(viewModel);
         }
 
         // POST: Boxes/Edit/5
@@ -80,15 +100,21 @@ namespace InventorySystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Label,Capacity,Fullness,Value,Category")] Box box)
+        public ActionResult Edit(BoxEditViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var box = _db.Boxes.Find(viewModel.Id);
+
+                box.Label = viewModel.Label;
+                box.CategoryId = viewModel.CategoryId;
+                box.Capacity = viewModel.Capacity;
+
                 _db.Entry(box).State = EntityState.Modified;
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(box);
+            return View(viewModel);
         }
 
         // GET: Boxes/Delete/5
