@@ -1,50 +1,37 @@
 ﻿using InventorySystem.Models;
 using InventorySystem.Models.ViewModels;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
+using InventorySystem.Services;
 using System.Web.Mvc;
 
 namespace InventorySystem.Controllers
 {
     public class BoxesController : Controller
     {
+        //return View(/*_db.Boxes.ToList()*/);
         private InventorySystemDb _db = new InventorySystemDb();
+        private IBoxService service;
 
+        public BoxesController()
+        {
+            this.service = new BoxService();
+        }
         // GET: Boxes
         public ActionResult Index()
         {
-            return View(_db.Boxes.ToList());
+            return View(service.GetBoxes());
         }
 
         // GET: Boxes/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Box box = _db.Boxes.Find(id);
-            if (box == null)
-            {
-                return HttpNotFound();
-            }
+            return View(service.DetailsBox(id));
 
-            var items = box.Items.ToList();
-            return View(new BoxItemsViewModel(box, items));
         }
 
         // GET: Boxes/Create
         public ActionResult Create()
         {
-
-            var viewModel = new BoxCreateViewModel
-            {
-                Categories = _db.Categories.ToList()
-            };
-
-
-            return View(viewModel);
+            return View(service.CreateBox());
         }
 
         // POST: Boxes/Create
@@ -56,14 +43,7 @@ namespace InventorySystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var box = new Box
-                {
-                    Label = viewModel.Label,
-                    Capacity = viewModel.Capacity,
-                    CategoryId = viewModel.CategoryId
-                };
-                _db.Boxes.Add(box);
-                _db.SaveChanges();
+                service.CreateBox(viewModel);
                 return RedirectToAction("Index");
             }
 
@@ -71,28 +51,9 @@ namespace InventorySystem.Controllers
         }
 
         // GET: Boxes/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Box box = _db.Boxes.Find(id);
-
-            if (box == null)
-            {
-                return HttpNotFound();
-            }
-
-            var viewModel = new BoxEditViewModel
-            {
-                Id = box.Id,
-                Label = box.Label,
-                Capacity = box.Capacity,
-                CategoryId = box.CategoryId,
-                Categories = _db.Categories.ToList()
-            };
-            return View(viewModel);
+            return View(service.EditBox(id));
         }
 
         // POST: Boxes/Edit/5
@@ -104,32 +65,16 @@ namespace InventorySystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var box = _db.Boxes.Find(viewModel.Id);
-
-                box.Label = viewModel.Label;
-                box.CategoryId = viewModel.CategoryId;
-                box.Capacity = viewModel.Capacity;
-
-                _db.Entry(box).State = EntityState.Modified;
-                _db.SaveChanges();
+                service.EditBox(viewModel);
                 return RedirectToAction("Index");
             }
             return View(viewModel);
         }
 
         // GET: Boxes/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Box box = _db.Boxes.Find(id);
-            if (box == null)
-            {
-                return HttpNotFound();
-            }
-            return View(box);
+            return View(service.GetBox(id));
         }
 
         // POST: Boxes/Delete/5
@@ -137,9 +82,7 @@ namespace InventorySystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Box box = _db.Boxes.Find(id);
-            _db.Boxes.Remove(box);
-            _db.SaveChanges();
+            service.RemoveBox(id);
             return RedirectToAction("Index");
         }
 
