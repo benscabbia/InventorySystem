@@ -4,9 +4,9 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <div class="row">
-    <form class="navbar-form navbar-left" role="search">
+    <form class="navbar-form navbar-left" role="search" method="get">
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="search" name="searchTerm" class="form-control" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
@@ -30,7 +30,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>              
+        <tr id="itemList">              
             <td>
                 <a target="_blank" href=@Html.DisplayFor(modelItem => item.EbayUrl)>@Html.DisplayFor(modelItem => item.Name)</a>
             </td>            

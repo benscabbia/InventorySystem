@@ -15,9 +15,19 @@ namespace InventorySystem.Controllers
         {
             this.service = new ItemService();
         }
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
-            return View(service.GetItemsOrderedByName());
+
+            var model = _db.Items.OrderBy(i => i.Name)
+                        .Where(
+                            i => searchTerm == null ||
+                            i.Name.Contains(searchTerm) ||
+                            i.ItemNumber.Contains(searchTerm) ||
+                            i.Description.Contains(searchTerm)
+                        ).Take(20);
+
+            return View(model);
+            //return View(service.GetItemsOrderedByName());
         }
 
         // GET: Item/Details/5
