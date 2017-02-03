@@ -7,6 +7,7 @@ namespace InventorySystem.Services
     public interface IItemService
     {
         IOrderedQueryable<Item> GetItemsOrderedByName();
+        IQueryable<Item> GetItemsSearch(string searchTerm, int numberOfResults = 20);
         Item GetItem(int id);
         ItemCreateViewModel CreateItem();
         Item CreateItem(ItemCreateViewModel viewModel);

@@ -18,14 +18,7 @@ namespace InventorySystem.Controllers
         public ActionResult Index(string searchTerm = null)
         {
 
-            var model = _db.Items.OrderBy(i => i.Name)
-                        .Where(
-                            i => searchTerm == null ||
-                            i.Name.Contains(searchTerm) ||
-                            i.ItemNumber.Contains(searchTerm) ||
-                            i.Description.Contains(searchTerm)
-                        ).Take(20);
-
+            var model = service.GetItemsSearch(searchTerm);
 
             if (Request.IsAjaxRequest())
             {
@@ -33,22 +26,15 @@ namespace InventorySystem.Controllers
             }
 
             return View(model);
-            //return View(service.GetItemsOrderedByName());
         }
 
         // http://localhost:63038/Item/AutoComplete/?term=yo
         public ActionResult Autocomplete(string term)
         {
-            var model = _db.Items.OrderBy(i => i.Name)
-                         .Where(
-                             i => i.Name.Contains(term) ||
-                             i.ItemNumber.Contains(term) ||
-                             i.Description.Contains(term)
-                         ).Take(20)
-                         .Select(i => new
-                         {
-                             label = i.Name
-                         });
+            var model = service.GetItemsSearch(term).Select(i => new
+            {
+                label = i.Name
+            });
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }

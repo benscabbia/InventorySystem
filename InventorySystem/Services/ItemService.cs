@@ -9,6 +9,7 @@ namespace InventorySystem.Services
     public class ItemService : IItemService
     {
         InventorySystemDb _db = new InventorySystemDb();
+
         public ItemCreateViewModel CreateItem()
         {
             var model = new ItemCreateViewModel
@@ -145,6 +146,19 @@ namespace InventorySystem.Services
         public IOrderedQueryable<Item> GetItemsOrderedByName()
         {
             return _db.Items.OrderBy(i => i.Name);
+        }
+
+        public IQueryable<Item> GetItemsSearch(string searchTerm, int numberOfResults = 20)
+        {
+            var model = _db.Items.OrderBy(i => i.Name)
+                        .Where(
+                            i => searchTerm == null ||
+                            i.Name.Contains(searchTerm) ||
+                            i.ItemNumber.Contains(searchTerm) ||
+                            i.Description.Contains(searchTerm)
+                        ).Take(numberOfResults);
+
+            return model;
         }
     }
 }
