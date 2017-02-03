@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace InventorySystem
 {
@@ -26,6 +25,14 @@ namespace InventorySystem
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ise").Include(
+                    "~/Scripts/jquery-ui-{version}.js",
+                    "~/Scripts/ise.js"
+                ));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+                      "~/Content/themes/base/all.css"));
         }
     }
 }

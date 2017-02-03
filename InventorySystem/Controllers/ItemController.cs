@@ -29,13 +29,29 @@ namespace InventorySystem.Controllers
 
             if (Request.IsAjaxRequest())
             {
-                return PartialView("_ViewItems", model);
+                return PartialView("_ViewItemsSimple", model);
             }
 
             return View(model);
             //return View(service.GetItemsOrderedByName());
         }
 
+        // http://localhost:63038/Item/AutoComplete/?term=yo
+        public ActionResult Autocomplete(string term)
+        {
+            var model = _db.Items.OrderBy(i => i.Name)
+                         .Where(
+                             i => i.Name.Contains(term) ||
+                             i.ItemNumber.Contains(term) ||
+                             i.Description.Contains(term)
+                         ).Take(20)
+                         .Select(i => new
+                         {
+                             label = i.Name
+                         });
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
         // GET: Item/Details/5
         public ActionResult Details(int id)
         {

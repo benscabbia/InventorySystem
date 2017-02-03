@@ -1,0 +1,18 @@
+﻿@model IEnumerable<InventorySystem.Models.Item>
+
+
+<div id="itemList">
+    @foreach (var item in Model)
+    {
+        <div>
+            <h4>@item.Name</h4>
+            <div>
+                @item.Price
+            </div>
+            <div>
+                @item.EbayUrl
+            </div>
+            <hr />
+        </div>
+    }
+</div>
