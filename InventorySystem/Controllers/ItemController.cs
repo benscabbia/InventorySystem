@@ -26,6 +26,12 @@ namespace InventorySystem.Controllers
                             i.Description.Contains(searchTerm)
                         ).Take(20);
 
+
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_ViewItems", model);
+            }
+
             return View(model);
             //return View(service.GetItemsOrderedByName());
         }

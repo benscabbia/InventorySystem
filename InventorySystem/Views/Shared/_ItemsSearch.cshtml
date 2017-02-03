@@ -1,0 +1,26 @@
+﻿<div class="row">
+    @*<form class="navbar-form navbar-left" role="search" method="get">
+            <div class="form-group">
+                <input type="search" name="searchTerm" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>*@
+
+    @using (Ajax.BeginForm(
+                new AjaxOptions
+                {
+                    HttpMethod = "get",
+                    InsertionMode = InsertionMode.Replace,
+                    UpdateTargetId = "itemList"
+                }
+    ))
+
+    {
+        <div class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="search" name="searchTerm" class="form-control" placeholder="Search" />
+            </div>
+            <input type="submit" value="Search" class="btn btn-success" />
+        </div>
+    }
+</div>
