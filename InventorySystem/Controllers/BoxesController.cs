@@ -5,6 +5,7 @@ using System.Web.Mvc;
 
 namespace InventorySystem.Controllers
 {
+    [Authorize]
     public class BoxesController : Controller
     {
         //return View(/*_db.Boxes.ToList()*/);

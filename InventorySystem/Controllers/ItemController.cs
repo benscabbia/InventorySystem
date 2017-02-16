@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace InventorySystem.Controllers
 {
+    [Authorize]
     public class ItemController : Controller
     {
         InventorySystemDb _db = new InventorySystemDb();
