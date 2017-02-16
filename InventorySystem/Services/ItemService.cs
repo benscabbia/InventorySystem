@@ -55,16 +55,6 @@ namespace InventorySystem.Services
 
                             //ListingType i.e. FixedPriceItem -> maybe dynamic and get relevant values?
 
-                            //item.hitcount;
-
-                            //item.listingDetails. end time? , startTime
-
-                            //item.listingtype
-
-                            //item.relisted / item.relistlink / item.listeparentID
-
-                            //item.sellingstatus.listing status, item.quantity sold
-
                             //shipping cost item.shippingdetails.shippingserviceoptions
                             //if shippingserveroptions.count > 0, shippingserveroptions.list[0].shippingservicecost.value
 

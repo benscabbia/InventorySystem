@@ -201,10 +201,19 @@
     <Compile Include="Migrations\201701300644481_AddedCategoryIdFKToBoxTable.Designer.cs">
       <DependentUpon>201701300644481_AddedCategoryIdFKToBoxTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702162037363_AddedItemEbayProperties.cs" />
+    <Compile Include="Migrations\201702162037363_AddedItemEbayProperties.Designer.cs">
+      <DependentUpon>201702162037363_AddedItemEbayProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702162104387_AddedItemSoldTimeAndShippingCost.cs" />
+    <Compile Include="Migrations\201702162104387_AddedItemSoldTimeAndShippingCost.Designer.cs">
+      <DependentUpon>201702162104387_AddedItemSoldTimeAndShippingCost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Box.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ItemLocation.cs" />
     <Compile Include="Models\Size.cs" />
     <Compile Include="Models\ViewModels\BoxCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\BoxEditViewModel.cs" />
@@ -371,6 +380,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701300644481_AddedCategoryIdFKToBoxTable.resx">
       <DependentUpon>201701300644481_AddedCategoryIdFKToBoxTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702162037363_AddedItemEbayProperties.resx">
+      <DependentUpon>201702162037363_AddedItemEbayProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702162104387_AddedItemSoldTimeAndShippingCost.resx">
+      <DependentUpon>201702162104387_AddedItemSoldTimeAndShippingCost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
