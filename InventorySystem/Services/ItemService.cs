@@ -36,32 +36,18 @@ namespace InventorySystem.Services
                         Name = ebayItem.Item.Title,
                         BoxId = viewModel.BoxId,
                         Size = viewModel.Size,
+                        //Location = null,
                         CategoryId = viewModel.CategoryId,
                         EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL,
                         Description = ebayItem.Item.Description,
-                        Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice.Value) //item.startprice.value
-
-                        /*
-                         
-                            //condition describe ebayItem.Item.ConditionDescription
-
-                            //startime, endtime to be, ebayItem.Item.ListingDetail
-                            // location mums vs camb
-                            // number of views
-                            //item.TimeLeft; Time left before the listing ends. The duration is represented in the ISO 8601 duration format (PnYnMnDTnHnMnS). See Data Types in the Trading API Guide for information about this format. For ended listings, the time left is PT0S (zero seconds).
-
-                            //picture details url i.e. item.PictureDetails.GalleryURL
-                            // or PictureDetails.PictureURL.InnerList [array of image URL's]
-
-                            //ListingType i.e. FixedPriceItem -> maybe dynamic and get relevant values?
-
-                            //shipping cost item.shippingdetails.shippingserviceoptions
-                            //if shippingserveroptions.count > 0, shippingserveroptions.list[0].shippingservicecost.value
-
-                            //watch count
-                         
-                         */
-
+                        Price = Convert.ToDecimal(ebayItem.Item.ListingDetails.ConvertedStartPrice.Value),
+                        ShippingServiceCost = ebayItem.Item.ShippingDetails.ShippingServiceOptions[0].ShippingServiceCost.Value,
+                        HitCount = ebayItem.Item.HitCount,
+                        GalleryURL = ebayItem.Item.PictureDetails.GalleryURL,
+                        PictureURL = ebayItem.Item.PictureDetails.PictureURL.ToArray(),
+                        WatchCount = ebayItem.Item.WatchCount,
+                        StartTime = ebayItem.Item.ListingDetails.StartTime,
+                        EndTime = ebayItem.Item.ListingDetails.EndTime,
                     };
                     _db.Items.Add(item);
                     _db.SaveChanges();
