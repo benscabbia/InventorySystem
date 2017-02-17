@@ -36,7 +36,7 @@ namespace InventorySystem.Services
                         Name = ebayItem.Item.Title,
                         BoxId = viewModel.BoxId,
                         Size = viewModel.Size,
-                        //Location = null,
+                        Location = viewModel.Location,
                         CategoryId = viewModel.CategoryId,
                         EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL,
                         Description = ebayItem.Item.Description,
@@ -68,9 +68,6 @@ namespace InventorySystem.Services
             {
                 throw E;
             }
-
-
-
         }
 
         public Item DeleteItem(int id)
