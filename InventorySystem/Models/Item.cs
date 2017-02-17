@@ -31,7 +31,6 @@ namespace InventorySystem.Models
 
 
         // Supporting Properties
-        public Size Size { get; set; }
         public string EbayUrl { get; set; }
         public bool Archieved { get; set; }
         public ItemLocation Location { get; set; }

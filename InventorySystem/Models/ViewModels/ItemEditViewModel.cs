@@ -11,6 +11,6 @@ namespace InventorySystem.Models.ViewModels
         public IEnumerable<Category> Categories { get; set; }
         public int BoxId { get; set; }
         public IEnumerable<Box> Boxes { get; set; }
-        public Size Size { get; set; }
+        public ItemLocation Location { get; set; }
     }
 }

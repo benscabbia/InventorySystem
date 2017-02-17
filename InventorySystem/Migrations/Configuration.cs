@@ -22,7 +22,6 @@ namespace InventorySystem.Migrations
                        Price = 8,
                        CategoryId = 1,
                        EbayUrl = "www.google.com",
-                       Size = Size.medium,
                        BoxId = 1
                    },
                   new Item
@@ -33,7 +32,6 @@ namespace InventorySystem.Migrations
                       Price = 3,
                       CategoryId = 3,
                       EbayUrl = "www.sims.com",
-                      Size = Size.medium,
                       BoxId = 2
                   }
            );

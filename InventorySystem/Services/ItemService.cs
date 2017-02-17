@@ -35,7 +35,6 @@ namespace InventorySystem.Services
                         ItemNumber = ebayItem.Item.ItemID,
                         Name = ebayItem.Item.Title,
                         BoxId = viewModel.BoxId,
-                        Size = viewModel.Size,
                         Location = viewModel.Location,
                         CategoryId = viewModel.CategoryId,
                         EbayUrl = ebayItem.Item.ListingDetails.ViewItemURL,
@@ -87,8 +86,6 @@ namespace InventorySystem.Services
             var item = GetItem(viewModel.Id);
             item.BoxId = viewModel.BoxId;
             item.CategoryId = viewModel.CategoryId;
-            item.Size = viewModel.Size;
-
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
 
@@ -106,7 +103,6 @@ namespace InventorySystem.Services
                 CategoryId = item.CategoryId,
                 Categories = _db.Categories.ToList(),
                 ItemNumber = item.ItemNumber,
-                Size = item.Size
             };
             return model;
         }
