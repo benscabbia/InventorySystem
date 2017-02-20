@@ -1,7 +1,44 @@
 ﻿@model IEnumerable<InventorySystem.Models.Item>
 
 
+
+
 <div id="itemList">
+    @foreach (var item in Model)
+    {
+    <div class="row">
+        <div class="col-md-2">
+            <div>
+                @if (!String.IsNullOrEmpty(@item.GalleryURL))
+                {
+                    <img class="img-thumbnail" src="@item.GalleryURL" />
+                }else{                       
+                    <img class="img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" />
+                }
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="info">
+                <div>@item.Name</div>
+                <div>@item.Price</div>
+                <div>
+                    <a href="@item.EbayUrl" target = "_blank">Ebay URL</a>
+                </div>   
+            </div>
+        </div>
+        <div class="col-md-2">
+            Edit...
+        </div>
+
+    </div>
+    <hr />
+    }
+</div>
+
+
+
+
+@*<div id="itemList">
     @foreach (var item in Model)
     {
         <div>
@@ -15,4 +52,4 @@
             <hr />
         </div>
     }
-</div>
+</div>*@

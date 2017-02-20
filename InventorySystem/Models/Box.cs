@@ -28,14 +28,14 @@ namespace InventorySystem.Models
             }
             private set { }
         }
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public int Fullness
-        {
-            get
-            {
-                return (100 / this.Capacity) * Items.Count;
-            }
-            private set { }
-        }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        //public int Fullness
+        //{
+        //    get
+        //    {
+        //        return (100 / this.Capacity) * Items.Count;
+        //    }
+        //    private set { }
+        //}
     }
 }
