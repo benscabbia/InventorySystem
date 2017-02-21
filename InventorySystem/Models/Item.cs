@@ -27,6 +27,7 @@ namespace InventorySystem.Models
         public long WatchCount { get; set; }
         public string GalleryURL { get; set; }
         public IEnumerable<string> PictureURL { get; set; }
+        [Display(Name = "Postage")]
         public double ShippingServiceCost { get; set; }
 
 

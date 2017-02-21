@@ -7,7 +7,7 @@
     @foreach (var item in Model)
     {
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-1">
             <div>
                 @if (!String.IsNullOrEmpty(@item.GalleryURL))
                 {
@@ -26,30 +26,14 @@
                 </div>   
             </div>
         </div>
-        <div class="col-md-2">
-            Edit...
+        <div class="col-md-3">
+            @Html.ActionLink("Edit", "Edit", "Item", new { id = item.Id }, null) |
+            @Html.ActionLink("Details", "Details", "Item", new { id = item.Id }, null) |
+            @*@Html.ActionLink("Archieve", "Archieve", "Item", new { id = item.Id }, null) |*@
+            @Html.ActionLink("Delete", "Delete", "Item", new { id = item.Id }, null)
         </div>
 
     </div>
     <hr />
     }
 </div>
-
-
-
-
-@*<div id="itemList">
-    @foreach (var item in Model)
-    {
-        <div>
-            <h4>@item.Name</h4>
-            <div>
-                @item.Price
-            </div>
-            <div>
-                @item.EbayUrl
-            </div>
-            <hr />
-        </div>
-    }
-</div>*@
