@@ -84,8 +84,18 @@ namespace InventorySystem.Services
         public void EditItem(ItemEditViewModel viewModel)
         {
             var item = GetItem(viewModel.Id);
+
+            // Check item was active and no longer is active
+            if (item.Status == Status.Active &&
+               item.Status != viewModel.Status)
+            {
+                item.ItemSoldTime = DateTime.Now;
+            }
+
             item.BoxId = viewModel.BoxId;
             item.CategoryId = viewModel.CategoryId;
+            item.Status = viewModel.Status;
+            item.Location = viewModel.Location;
             _db.Entry(item).State = EntityState.Modified;
             _db.SaveChanges();
 
@@ -103,6 +113,7 @@ namespace InventorySystem.Services
                 CategoryId = item.CategoryId,
                 Categories = _db.Categories.ToList(),
                 ItemNumber = item.ItemNumber,
+                Status = item.Status
             };
             return model;
         }
@@ -128,6 +139,11 @@ namespace InventorySystem.Services
                         ).Take(numberOfResults);
 
             return model;
+        }
+
+        private bool HasStatusChanged()
+        {
+            return false;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace InventorySystem.Models.ViewModels
         public int BoxId { get; set; }
         public IEnumerable<Box> Boxes { get; set; }
         public ItemLocation Location { get; set; }
+        public Status Status { get; set; }
     }
 }
