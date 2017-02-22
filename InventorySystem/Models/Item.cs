@@ -8,7 +8,7 @@ namespace InventorySystem.Models
     {
         public Item()
         {
-            this.Archieved = false;
+            this.Status = Status.Active;
             this.PictureURL = new List<string>();
             this.ItemSoldTime = DateTime.MinValue;
         }
@@ -33,7 +33,7 @@ namespace InventorySystem.Models
 
         // Supporting Properties
         public string EbayUrl { get; set; }
-        public bool Archieved { get; set; }
+        public Status Status { get; set; }
         public ItemLocation Location { get; set; }
         public DateTime ItemSoldTime { get; set; }
 

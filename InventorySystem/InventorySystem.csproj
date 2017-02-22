@@ -209,11 +209,16 @@
     <Compile Include="Migrations\201702162104387_AddedItemSoldTimeAndShippingCost.Designer.cs">
       <DependentUpon>201702162104387_AddedItemSoldTimeAndShippingCost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702220621336_ReplacedArchieveWithStatus.cs" />
+    <Compile Include="Migrations\201702220621336_ReplacedArchieveWithStatus.Designer.cs">
+      <DependentUpon>201702220621336_ReplacedArchieveWithStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Box.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ItemLocation.cs" />
+    <Compile Include="Models\Status.cs" />
     <Compile Include="Models\ViewModels\BoxCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\BoxEditViewModel.cs" />
     <Compile Include="Models\ViewModels\BoxItemsViewModel.cs" />
@@ -383,6 +388,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702162104387_AddedItemSoldTimeAndShippingCost.resx">
       <DependentUpon>201702162104387_AddedItemSoldTimeAndShippingCost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702220621336_ReplacedArchieveWithStatus.resx">
+      <DependentUpon>201702220621336_ReplacedArchieveWithStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
