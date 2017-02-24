@@ -1,17 +1,43 @@
 ﻿
 <div class="row">
-    <form  
-          role="search" 
-          method="get" 
+
+
+    <form id="ItemSearchForm"
+          role="search"
+          method="get"
           action="@Url.Action("Index")"
-          data-ise-ajax="true" 
-          data-ise-target="#itemList">       
-          <div class="ui-widget">
-            <input type="search"
-                     name="searchTerm"        
-                     placeholder="Search" 
-                     data-ise-autocomplete="@Url.Action("Autocomplete")" />               
-          </div>
-        <input type="submit" value="submit" />
-    </form>
-</div>
+          data-ise-ajax="true"
+          data-ise-target="#itemList">
+
+
+        <div class="col-md-4">
+            <div class="ui-widget form-group" style="display: inline-flex;">
+                <input class="form-control"
+                       type="search"
+                       name="searchTerm"
+                       placeholder="Search"
+                       data-ise-autocomplete="@Url.Action("Autocomplete")" />
+
+                <span class="input-group-btn">
+                    <input type="submit" value="Search" class="btn btn-primary">
+                </span>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            @*<select id="status"
+                    class="form-control" 
+                    name="statusTerm"
+                    data-ise-status="@Url.Action("Autocomplete")"
+                    >
+                <option value="all">All</option>
+                <option value="active">Active</option>
+                <option value="sold">Sold</option>
+                <option value="archieved">Archieved</option>
+            </select>*@
+        </div>
+        <div class="col-md-5">
+        </div>
+
+        </form>
+    </div>

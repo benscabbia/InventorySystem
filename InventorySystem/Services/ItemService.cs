@@ -128,22 +128,58 @@ namespace InventorySystem.Services
             return _db.Items.OrderBy(i => i.Name);
         }
 
-        public IQueryable<Item> GetItemsSearch(string searchTerm, int numberOfResults = 20)
+        public IQueryable<Item> GetItemsSearch(string searchTerm, string statusTerm, int numberOfResults = 20)
         {
+
+            //Status status = getStatusTerm(statusTerm);
+
             var model = _db.Items.OrderBy(i => i.Name)
                         .Where(
                             i => searchTerm == null ||
                             i.Name.Contains(searchTerm) ||
                             i.ItemNumber.Contains(searchTerm) ||
                             i.Description.Contains(searchTerm)
+
                         ).Take(numberOfResults);
+
+            //var model = _db.Items.OrderBy(i => i.Name)
+            //            .Where(
+            //                i => searchTerm == null ||
+            //                i.Name.Contains(searchTerm) ||
+            //                i.ItemNumber.Contains(searchTerm) ||
+            //                i.Description.Contains(searchTerm)
+
+            //            );
+
+            //if (status != Status.All)
+            //{
+            //    model = model.Where(
+            //        i => i.Status == status
+            //    ).Take(numberOfResults);
+            //}
 
             return model;
         }
 
-        private bool HasStatusChanged()
+        private Status getStatusTerm(string statusTerm)
         {
-            return false;
+            if (statusTerm == "archieved")
+            {
+                return Status.Archieve;
+            }
+            else if (statusTerm == "active")
+            {
+                return Status.Active;
+            }
+            else if (statusTerm == "sold")
+            {
+                return Status.Sold;
+            }
+            else
+            {
+                return Status.All;
+            }
+
         }
     }
 }

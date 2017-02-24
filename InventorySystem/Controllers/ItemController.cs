@@ -16,10 +16,10 @@ namespace InventorySystem.Controllers
         {
             this.service = new ItemService();
         }
-        public ActionResult Index(string searchTerm = null)
+        public ActionResult Index(string searchTerm = null, string statusTerm = "All")
         {
 
-            var model = service.GetItemsSearch(searchTerm);
+            var model = service.GetItemsSearch(searchTerm, statusTerm);
 
             if (Request.IsAjaxRequest())
             {
@@ -30,9 +30,9 @@ namespace InventorySystem.Controllers
         }
 
         // http://localhost:63038/Item/AutoComplete/?term=yo
-        public ActionResult Autocomplete(string term)
+        public ActionResult Autocomplete(string term, string statusTerm)
         {
-            var model = service.GetItemsSearch(term).Select(i => new
+            var model = service.GetItemsSearch(term, statusTerm).Select(i => new
             {
                 label = i.Name
             });

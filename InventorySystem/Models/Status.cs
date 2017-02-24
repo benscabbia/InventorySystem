@@ -2,6 +2,9 @@
 {
     public enum Status
     {
-        Active, Sold, Archieve
+        All = -1,
+        Active = 0,
+        Sold = 1,
+        Archieve = 2
     }
 }
