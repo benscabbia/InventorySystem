@@ -27,3 +27,8 @@ textarea {
 .img-thumbnail{
     height: 75px;
 }
+
+.field-validation-valid
+{
+    display: none;
+}

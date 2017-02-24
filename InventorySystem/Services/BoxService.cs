@@ -14,7 +14,8 @@ namespace InventorySystem.Services
         {
             var viewModel = new BoxCreateViewModel
             {
-                Categories = _db.Categories.ToList()
+                Categories = _db.Categories.ToList(),
+                Capacity = 65
             };
             return viewModel;
         }

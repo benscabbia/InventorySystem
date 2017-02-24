@@ -2,10 +2,7 @@
 using eBay.Service.Core.Sdk;
 using eBay.Service.Core.Soap;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 
 namespace InventorySystem.Models
 {
@@ -104,7 +101,7 @@ namespace InventorySystem.Models
             try
             {
                 oGetItemCall.GetItem(oGetItemCall.ItemID);
-                //oGetItemCall.GetItem("222366593223");                
+                //oGetItemCall.GetItem("222366593223");       
             }
             catch (ArgumentException E)
             {
@@ -113,7 +110,7 @@ namespace InventorySystem.Models
             }
             catch (Exception E)
             {
-                Console.Write(E.ToString());                
+                Console.Write(E.ToString());
             }
             GC.Collect();
             return oGetItemCall;

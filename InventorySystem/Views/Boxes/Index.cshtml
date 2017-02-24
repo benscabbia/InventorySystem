@@ -15,9 +15,6 @@
             @Html.DisplayNameFor(model => model.Label)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
             Number of Items
         </th>        
         <th>
@@ -33,10 +30,7 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Label)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
+        </td>        
         <td>
             @Html.DisplayFor(modelItem => item.Items.Count)
         </td>        
