@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Home Page";
 }
-
-<h2>My Items</h2>
+<br />
+@Html.ActionLink("Create new Item", "Create", "Item", null, new { @class = "btn btn-success" })
+<h2>My Items</h2> 
 @Html.Partial("_ItemsSearchJSAutoComplete")
 <hr />
 @Html.Partial("_ViewItemsSimple", Model)
