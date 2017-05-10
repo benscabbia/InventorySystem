@@ -227,6 +227,7 @@
     <Compile Include="Models\InventorySystemDb.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\ItemAndBoxViewModel.cs" />
     <Compile Include="Models\ViewModels\ItemCreateViewModel.cs" />
     <Compile Include="Models\ViewModels\ItemEditViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

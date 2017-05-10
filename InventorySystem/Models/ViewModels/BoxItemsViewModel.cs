@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 
 namespace InventorySystem.Models
 {
     public class BoxItemsViewModel
     {
+        public BoxItemsViewModel()
+        {
+        }
 
         public BoxItemsViewModel(Box box, List<Item> items)
         {

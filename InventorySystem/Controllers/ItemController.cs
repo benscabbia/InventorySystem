@@ -19,7 +19,7 @@ namespace InventorySystem.Controllers
         public ActionResult Index(string searchTerm = null, string statusTerm = "All")
         {
 
-            var model = service.GetItemsSearch(searchTerm, statusTerm);
+            var model = service.GetItemsAndBoxSearch(searchTerm, statusTerm);
 
             if (Request.IsAjaxRequest())
             {

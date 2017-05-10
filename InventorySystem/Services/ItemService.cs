@@ -1,6 +1,7 @@
 ﻿using InventorySystem.Models;
 using InventorySystem.Models.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -123,6 +124,26 @@ namespace InventorySystem.Services
             return _db.Items.Where(i => i.Id == id).Single();
         }
 
+        public IList<ItemAndBoxViewModel> GetItemsAndBoxSearch(string searchTerm, string searchStatus, int numberOfResults = 20)
+        {
+            IList<ItemAndBoxViewModel> list = new List<ItemAndBoxViewModel>();
+
+            var allitems = this.GetItemsSearch(searchTerm, searchStatus).ToList();
+
+            foreach (var item in allitems)
+            {
+                list.Add(
+                    new ItemAndBoxViewModel
+                    {
+                        Box = item.Box,
+                        Item = item
+                    }
+                );
+            }
+
+            return list;
+        }
+
         public IOrderedQueryable<Item> GetItemsOrderedByName()
         {
             return _db.Items.OrderBy(i => i.Name);
@@ -142,15 +163,6 @@ namespace InventorySystem.Services
 
                         ).Take(numberOfResults);
 
-            //var model = _db.Items.OrderBy(i => i.Name)
-            //            .Where(
-            //                i => searchTerm == null ||
-            //                i.Name.Contains(searchTerm) ||
-            //                i.ItemNumber.Contains(searchTerm) ||
-            //                i.Description.Contains(searchTerm)
-
-            //            );
-
             //if (status != Status.All)
             //{
             //    model = model.Where(
@@ -160,6 +172,7 @@ namespace InventorySystem.Services
 
             return model;
         }
+
 
         private Status getStatusTerm(string statusTerm)
         {

@@ -1,17 +1,17 @@
-﻿@model IEnumerable<InventorySystem.Models.Item>
+﻿@model IEnumerable<InventorySystem.Models.ViewModels.ItemAndBoxViewModel>
 
 
 
 
 <div id="itemList">
-    @foreach (var item in Model)
+    @foreach (var data in Model)
     {
     <div class="row">
         <div class="col-md-1">
             <div>
-                @if (!String.IsNullOrEmpty(@item.GalleryURL))
+                @if (!String.IsNullOrEmpty(@data.Item.GalleryURL))
                 {
-                    <img class="img-thumbnail" src="@item.GalleryURL" />
+                    <img class="img-thumbnail" src="@data.Item.GalleryURL" />
                 }else{                       
                     <img class="img-thumbnail" src="https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg" />
                 }
@@ -19,18 +19,19 @@
         </div>
         <div class="col-md-8">
             <div class="info">
-                <div>@item.Name</div>
-                <div>@item.Price</div>
+                <div>@data.Item.Name</div>
+                <div>£@data.Item.Price</div>
+                <div>@data.Box.Label</div>
                 <div>
-                    <a href="@item.EbayUrl" target = "_blank">Ebay URL</a>
+                    <a href="@data.Item.EbayUrl" target = "_blank">Ebay URL</a>
                 </div>   
             </div>
         </div>
         <div class="col-md-3">
-            @Html.ActionLink("Edit", "Edit", "Item", new { id = item.Id }, null) |
-            @Html.ActionLink("Details", "Details", "Item", new { id = item.Id }, null) |
+            @Html.ActionLink("Edit", "Edit", "Item", new { id = data.Item.Id }, null) |
+            @Html.ActionLink("Details", "Details", "Item", new { id = data.Item.Id }, null) |
             @*@Html.ActionLink("Archieve", "Archieve", "Item", new { id = item.Id }, null) |*@
-            @Html.ActionLink("Delete", "Delete", "Item", new { id = item.Id }, null)
+            @Html.ActionLink("Delete", "Delete", "Item", new { id = data.Item.Id }, null)
         </div>
 
     </div>
