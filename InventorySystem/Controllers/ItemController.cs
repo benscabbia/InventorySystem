@@ -59,8 +59,12 @@ namespace InventorySystem.Controllers
             {
                 try
                 {
+                    DateTime now = DateTime.Now;
                     item = service.CreateItem(viewModel);
-                    return RedirectToAction("Details", new { id = item.Id });
+                    ModelState.Clear();
+                    ViewData["Successful"] = "Successfully uploaded: " + viewModel.ItemNumber + " at " + now.ToLongTimeString();
+                    return View(service.CreateItem());
+                    // return RedirectToAction("Details", new { id = item.Id });
                 }
                 catch (ArgumentException E)
                 {

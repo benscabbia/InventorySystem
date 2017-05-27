@@ -2,10 +2,20 @@
 
 @{
     ViewBag.Title = "Create";
+    var successful = ViewData["Successful"] as String;
 }
 
 <h2>Create Item</h2>
 
+@if(!String.IsNullOrWhiteSpace(successful))
+{
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            Successful Upload
+        </div>
+        <div class="panel-body">@successful</div>
+    </div>
+}
 
 @using (Html.BeginForm()) 
 {
