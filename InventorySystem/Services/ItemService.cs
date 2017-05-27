@@ -11,12 +11,13 @@ namespace InventorySystem.Services
     {
         InventorySystemDb _db = new InventorySystemDb();
 
-        public ItemCreateViewModel CreateItem()
+        public ItemCreateViewModel CreateItem(int boxId = 0)
         {
             var model = new ItemCreateViewModel
             {
                 Categories = _db.Categories.ToList(),
-                Boxes = _db.Boxes.ToList()
+                Boxes = _db.Boxes.ToList(),
+                BoxId = boxId
             };
 
             return model;

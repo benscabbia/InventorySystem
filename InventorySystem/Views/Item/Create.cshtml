@@ -7,7 +7,7 @@
 
 <h2>Create Item</h2>
 
-@if(!String.IsNullOrWhiteSpace(successful))
+@if (!String.IsNullOrWhiteSpace(successful))
 {
     <div class="panel panel-success">
         <div class="panel-heading">
@@ -42,7 +42,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.BoxId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">               
+            <div class="col-md-10">                               
                 @Html.DropDownListFor(model => model.BoxId, new SelectList(Model.Boxes, "Id", "Label"), htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.BoxId, "", new { @class = "text-danger" })
             </div>
